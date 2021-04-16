@@ -3,12 +3,19 @@
 
 #include "array_int.h"
 
-array *create_int()
+struct array_int
+{
+    int *data;
+    unsigned int size, capacity;
+};
+
+array *array_create()
 {
     array *a = (array *)malloc(sizeof(array));
 
     if (a == 0)
         return 0;
+
     a->data = (int *)malloc(sizeof(int) * 100);
     a->size = 0;
     a->capacity = 100;
@@ -17,14 +24,14 @@ array *create_int()
 };
 
 // a -> capacity, is to receive content from the pointer of a struct.
-void append_int(array *a, int x, int *error)
+void append_array(array *a, int x, int *error)
 {
     *error = 1;
 
     // increase *capacity
     if (a->size == a->capacity)
     {
-        a->capacity = a->capacity + 10;
+        a->capacity = a->capacity + 100;
         int *new = (int *)malloc(sizeof(int) * (a->capacity));
 
         int *old = a->data; // points to old space
@@ -39,7 +46,8 @@ void append_int(array *a, int x, int *error)
         free(old); // free up old memory
     }
 
-    a->data[a->size] = x;
+    // a->size++ atribute new size
+    a->data[a->size++] = x;
     *error = 0;
 }
 
@@ -72,15 +80,46 @@ int array_remove_from(array *a, int index)
 
 int array_find(array *a, int element)
 {
-    while ((a->size)--)
+    // while ((a->size)--)
+    // {
+    //     if (a->data == element)
+    //     {
+
+    //         return 1;
+    //     }
+    // }
+    // return 0;
+
+    int i;
+    for (i = 0; i < a->size; ++i)
     {
-        if (a->data == element)
+        if (a->data[i] == element)
+        {
             return 1;
+            break;
+        }
     }
+
+    return 0;
 }
 
 void array_destroy(array *a)
 {
     free(a->data);
     free(a);
+}
+
+unsigned int get_size(array *a)
+{
+    return a->size;
+}
+
+unsigned int get_capacity(array *a)
+{
+    return a->capacity;
+}
+
+int *get_data(array *a)
+{
+    return a->data;
 }

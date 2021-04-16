@@ -15,11 +15,12 @@
  *              stores the dynamic array data. 
  *
  */
-struct array_int
-{
-    int *data;
-    unsigned int size, capacity;
-};
+
+// struct array_int
+// {
+//     int *data;
+//     unsigned int size, capacity;
+// };
 
 typedef struct array_int array;
 
@@ -129,7 +130,7 @@ unsigned int array_capacity(array *array);
 double array_percent_occuped(array *array);
 
 /**
- * Function extra: void append-array(array * array, int x, int *error);
+ * Function "extra": void append-array(array * array, int x, int *error);
  *
  * Description: Relese memory used by the 'array' reference.
  *              Invalidate memory area too.
@@ -147,5 +148,37 @@ void append_array(array *array, int x, int *error);
  */
 
 void array_destroy(array *array);
+
+/**
+ * Function: unsigned int get_size(array *array);
+ *
+ * Description: Function to get values from array. In this case is size.
+ * 
+ * Return: A unsigned int, returning value size, that is put has been assigned to the 'array'.
+ *
+ */
+// adds to capacity and data
+unsigned int get_size(array *array);
+
+/**
+ * Function: unsigned int get_capacity(array *array);
+ *
+ * Description: Function to get values from array. In this case is capacity.
+ * 
+ * Return: A unsigned int, returning value capacity, that is put has been assigned to the 'array'.
+ *
+ */
+unsigned int get_capacity(array *array);
+
+/**
+ * Function: unsigned int get_data(array *array);
+ *
+ * Description: Function to get values from array. In this case is data.
+ * 
+ * Return: A unsigned int, returning value data, that is put has been assigned to the 'array'.
+ *
+ */
+// unsigned int get_data(array *array);
+int *get_data(array *array);
 
 #endif

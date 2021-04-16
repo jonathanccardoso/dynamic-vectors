@@ -5,5 +5,5 @@
 ## Running
 
 ```console
-❯ gcc -Wall -o test main.c vetor_int.c
+❯ gcc -Wall -o main main.c array_int.c
 ```
