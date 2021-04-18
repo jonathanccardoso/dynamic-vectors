@@ -6,24 +6,12 @@
 #include "list_int.h"
 
 // Removes library entry and exit handling
-// void print_vector(array *a)
-// {
-//     int i;
-
-//     printf(" (%u %u) {", a->size, a->capacity);
-//     for (i = 0; i < a->size; ++i)
-//     {
-//         printf("%d", a->data[i]);
-//     }
-//     printf("}\n");
-// }
-
-void print_vector(array *a)
+void print_array_vector(array *a)
 {
     int i;
-    unsigned int size = get_size(a);
-    unsigned int capacity = get_capacity(a);
-    int *data = get_data(a);
+    unsigned int size = array_size(a);
+    unsigned int capacity = array_capacity(a);
+    int *data = array_data(a);
 
     printf(" (%u %u) {", size, capacity);
     for (i = 0; i < size; ++i)
@@ -37,7 +25,7 @@ int main()
 {
     clock_t beginning, end;
     array *a1 = array_create();
-    print_vector(a1);
+    print_array_vector(a1);
 
     if (a1 == 0)
         return 0;
@@ -55,8 +43,8 @@ int main()
     }
     end = clock();
 
-    print_vector(a1);
-    // destroy_int(a1);
+    print_array_vector(a1);
+    array_destroy(a1);
 
     double time = (end - beginning) / (CLOCKS_PER_SEC / 1000.0);
     printf("Tempo decorrido: %lfms\n", time);

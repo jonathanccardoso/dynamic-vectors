@@ -150,35 +150,14 @@ void append_array(array *array, int x, int *error);
 void array_destroy(array *array);
 
 /**
- * Function: unsigned int get_size(array *array);
+ * Function Extra: unsigned int array_data(array *array);
  *
- * Description: Function to get values from array. In this case is size.
- * 
- * Return: A unsigned int, returning value size, that is put has been assigned to the 'array'.
- *
- */
-// adds to capacity and data
-unsigned int get_size(array *array);
-
-/**
- * Function: unsigned int get_capacity(array *array);
- *
- * Description: Function to get values from array. In this case is capacity.
- * 
- * Return: A unsigned int, returning value capacity, that is put has been assigned to the 'array'.
- *
- */
-unsigned int get_capacity(array *array);
-
-/**
- * Function: unsigned int get_data(array *array);
- *
- * Description: Function to get values from array. In this case is data.
+ * Description: Function to array values from array. In this case is data.
  * 
  * Return: A unsigned int, returning value data, that is put has been assigned to the 'array'.
  *
  */
-// unsigned int get_data(array *array);
-int *get_data(array *array);
+// unsigned int array_data(array *array);
+int *array_data(array *array);
 
 #endif

@@ -109,17 +109,17 @@ void array_destroy(array *a)
     free(a);
 }
 
-unsigned int get_size(array *a)
+unsigned int array_size(array *a)
 {
     return a->size;
 }
 
-unsigned int get_capacity(array *a)
+unsigned int array_capacity(array *a)
 {
     return a->capacity;
 }
 
-int *get_data(array *a)
+int *array_data(array *a)
 {
     return a->data;
 }
