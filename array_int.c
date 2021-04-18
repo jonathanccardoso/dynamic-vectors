@@ -23,6 +23,28 @@ array *array_create()
     return a;
 };
 
+int array_get(array *a, int index)
+{
+    return a->data[index];
+}
+
+int array_find(array *a, int element)
+{
+    int i;
+    unsigned int size = a->size;
+
+    for (i = 0; i < size; ++i)
+    {
+        if (a->data[i] == element)
+        {
+            return i;
+            break;
+        }
+    }
+
+    return 0;
+}
+
 // a -> capacity, is to receive content from the pointer of a struct.
 void append_array(array *a, int x, int *error)
 {
@@ -78,31 +100,6 @@ int array_remove_from(array *a, int index)
     return --(a->size);
 }
 
-int array_find(array *a, int element)
-{
-    // while ((a->size)--)
-    // {
-    //     if (a->data == element)
-    //     {
-
-    //         return 1;
-    //     }
-    // }
-    // return 0;
-
-    int i;
-    for (i = 0; i < a->size; ++i)
-    {
-        if (a->data[i] == element)
-        {
-            return 1;
-            break;
-        }
-    }
-
-    return 0;
-}
-
 void array_destroy(array *a)
 {
     free(a->data);
@@ -117,6 +114,11 @@ unsigned int array_size(array *a)
 unsigned int array_capacity(array *a)
 {
     return a->capacity;
+}
+
+double array_percent_occuped(array *a)
+{
+    return a->size / a->capacity;
 }
 
 int *array_data(array *a)

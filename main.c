@@ -11,12 +11,14 @@ void print_array_vector(array *a)
     int i;
     unsigned int size = array_size(a);
     unsigned int capacity = array_capacity(a);
-    int *data = array_data(a);
+    // int *data_array = array_data(a);
 
     printf(" (%u %u) {", size, capacity);
     for (i = 0; i < size; ++i)
     {
-        printf("%d ", data[i]);
+        // two forms
+        // printf("%d ", data_array[i]);
+        printf("%d ", array_get(a, i));
     }
     printf("}\n");
 }
@@ -44,6 +46,9 @@ int main()
     end = clock();
 
     print_array_vector(a1);
+    printf("Encontrar index do elemento 432: %d\n", array_find(a1, 432));
+    printf("Percentual de ocupacao: %2.f\n", array_percent_occuped(a1));
+
     array_destroy(a1);
 
     double time = (end - beginning) / (CLOCKS_PER_SEC / 1000.0);
