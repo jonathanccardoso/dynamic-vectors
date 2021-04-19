@@ -106,6 +106,48 @@ void array_destroy(array *a)
     free(a);
 }
 
+unsigned int array_push_back(array *a, int i)
+{
+    if (a->size == a->capacity)
+    {
+        printf("size == capacity");
+        a->capacity = a->capacity + 100;
+        int *new = (int *)malloc(sizeof(int) * (a->capacity));
+        int *old = a->data;
+
+        int i;
+        for (i = 0; i < a->size; ++i)
+        {
+            *(new + i) /* new[i] */ = *(old + i);
+        }
+        a->data = new;
+
+        free(old);
+    }
+    printf("size != capacity %d %d\n", a->size, a->capacity);
+    printf("i %d\n", i);
+
+    a->data[(a->size)++] = i;
+    return a->size;
+}
+
+unsigned int array_pop_back(array *a)
+{
+    // check if array is not empty, test extra!
+    if (a->size <= 0)
+    {
+        return 0;
+    }
+
+    int i;
+    for (i = a->size - 1; i < a->size; ++i)
+    {
+        a->data[i] = a->data[i + 1];
+    }
+
+    return --(a->size);
+}
+
 unsigned int array_size(array *a)
 {
     return a->size;

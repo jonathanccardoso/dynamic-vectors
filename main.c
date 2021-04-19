@@ -45,9 +45,13 @@ int main()
     }
     end = clock();
 
-    print_array_vector(a1);
+    // print_array_vector(a1);
     printf("Encontrar index do elemento 432: %d\n", array_find(a1, 432));
     printf("Percentual de ocupacao: %2.f\n", array_percent_occuped(a1));
+    printf("Remover ultimo elemento do array: %d\n", array_pop_back(a1));
+    print_array_vector(a1);
+    printf("Adiciona numero 24 ao final do array: %d\n", array_push_back(a1, 24));
+    print_array_vector(a1);
 
     array_destroy(a1);
 
