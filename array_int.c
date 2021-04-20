@@ -73,22 +73,17 @@ void append_array(array *a, int x, int *error)
     *error = 0;
 }
 
-// ------ need to validate this assignment ------
 int array_insert_at(array *a, int index, int value)
 {
-    if (a->size != a->capacity)
+    if (index < a->size)
     {
-        int i;
-        for (i = (a->size)++; i > index; --i)
-        {
-            // a[i] = a[i - 1];
-            a->data[i] = value;
-        }
+        a->data[index] = value;
+        return index;
     }
-    return a->size;
+    else
+        return -1;
 }
 
-// ------ need to validate this assignment ------
 int array_remove_from(array *a, int index)
 {
     int i;
