@@ -15,9 +15,19 @@
  *              stores the dynamic list data. 
  *
  */
+
+// struct list_int_node
+// {
+//     int value;
+//     struct list_int_node ∗prev;
+//     struct list_int_node ∗next;
+// };
+
 struct list_int
 {
-    // ...
+    // struct list_int_node ∗first;
+    // struct list_int_node ∗last;
+    // unsigned int size;
 };
 
 typedef struct list_int list;
