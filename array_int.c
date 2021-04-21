@@ -28,79 +28,6 @@ int array_get(array *a, int index)
     return a->data[index];
 }
 
-int array_find(array *a, int element)
-{
-    int i;
-    unsigned int size = a->size;
-
-    for (i = 0; i < size; ++i)
-    {
-        if (a->data[i] == element)
-        {
-            return i;
-            break;
-        }
-    }
-
-    return 0;
-}
-
-// a -> capacity, is to receive content from the pointer of a struct.
-void append_array(array *a, int x, int *error)
-{
-    *error = 1;
-
-    // increase *capacity
-    if (a->size == a->capacity)
-    {
-        a->capacity = a->capacity + 100;
-        int *new = (int *)malloc(sizeof(int) * (a->capacity));
-
-        int *old = a->data; // points to old space
-
-        int i;
-        for (i = 0; i < a->size; ++i)
-        {
-            *(new + i) /* new[i] */ = *(old + i);
-        }
-        a->data = new;
-
-        free(old); // free up old memory
-    }
-
-    // a->size++ atribute new size
-    a->data[a->size++] = x;
-    *error = 0;
-}
-
-int array_insert_at(array *a, int index, int value)
-{
-    if (index < a->size)
-    {
-        a->data[index] = value;
-        return index;
-    }
-    else
-        return -1;
-}
-
-int array_remove_from(array *a, int index)
-{
-    int i;
-    for (i = index; i < a->size; ++i)
-    {
-        a->data[i] = a->data[i + 1];
-    }
-
-    return --(a->size);
-}
-
-void array_destroy(array *a)
-{
-    free(a->data);
-    free(a);
-}
-
 unsigned int array_push_back(array *a, int i)
 {
     if (a->size == a->capacity)
@@ -148,6 +75,45 @@ unsigned int array_size(array *a)
     return a->size;
 }
 
+int array_find(array *a, int element)
+{
+    int i;
+    unsigned int size = a->size;
+
+    for (i = 0; i < size; ++i)
+    {
+        if (a->data[i] == element)
+        {
+            return i;
+            break;
+        }
+    }
+
+    return 0;
+}
+
+int array_insert_at(array *a, int index, int value)
+{
+    if (index < a->size)
+    {
+        a->data[index] = value;
+        return index;
+    }
+    else
+        return -1;
+}
+
+int array_remove_from(array *a, int index)
+{
+    int i;
+    for (i = index; i < a->size; ++i)
+    {
+        a->data[i] = a->data[i + 1];
+    }
+
+    return --(a->size);
+}
+
 unsigned int array_capacity(array *a)
 {
     return a->capacity;
@@ -156,6 +122,40 @@ unsigned int array_capacity(array *a)
 double array_percent_occuped(array *a)
 {
     return a->size / a->capacity;
+}
+
+// a -> capacity, is to receive content from the pointer of a struct.
+void append_array(array *a, int x, int *error)
+{
+    *error = 1;
+
+    // increase *capacity
+    if (a->size == a->capacity)
+    {
+        a->capacity = a->capacity + 100;
+        int *new = (int *)malloc(sizeof(int) * (a->capacity));
+
+        int *old = a->data; // points to old space
+
+        int i;
+        for (i = 0; i < a->size; ++i)
+        {
+            *(new + i) /* new[i] */ = *(old + i);
+        }
+        a->data = new;
+
+        free(old); // free up old memory
+    }
+
+    // a->size++ atribute new size
+    a->data[a->size++] = x;
+    *error = 0;
+}
+
+void array_destroy(array *a)
+{
+    free(a->data);
+    free(a);
 }
 
 int *array_data(array *a)
