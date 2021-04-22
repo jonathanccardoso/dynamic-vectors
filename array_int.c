@@ -32,7 +32,6 @@ unsigned int array_push_back(array *a, int i)
 {
     if (a->size == a->capacity)
     {
-        printf("size == capacity");
         a->capacity = a->capacity + 100;
         int *new = (int *)malloc(sizeof(int) * (a->capacity));
         int *old = a->data;
@@ -46,8 +45,6 @@ unsigned int array_push_back(array *a, int i)
 
         free(old);
     }
-    printf("size != capacity %d %d\n", a->size, a->capacity);
-    printf("i %d\n", i);
 
     a->data[(a->size)++] = i;
     return a->size;

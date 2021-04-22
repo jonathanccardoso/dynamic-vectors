@@ -79,7 +79,7 @@ unsigned int array_size(array *array);
 /**
  * Function: int array_find(array * array, int element);
  *
- * Description: Gets the index of  element 'element'.
+ * Description: Gets the index of element 'element'.
  *
  * Return: The index of element 'element' if element is in the range [0..size-1].
  *
